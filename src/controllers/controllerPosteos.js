@@ -1,7 +1,7 @@
 let posts = [ ]
 
 export const viewInicio = async (req,res) => {
-  res.status(200).render('inicio',{posteos:posts}) 
+  res.status(200).render('inicio',{posts:posts}) 
 }
 
 export const viewUser= async (req,res)=>{
@@ -11,6 +11,7 @@ export const viewUser= async (req,res)=>{
   
 export const createPost = async (req,res)=>{
   req.body.id = Math.floor(Math.random()*500000)
+  req.body.comentarios = []
   posts.push(req.body)
   console.log(req.body)
   res.status(200).redirect('/usuario')
@@ -28,4 +29,12 @@ export const updatePost = (req,res) => {
   if(req.body.title) post.title = req.body.title
   if(req.body.desc) post.desc = req.body.desc
   res.status(200).redirect('/usuario')
+}
+
+export const createComentario = (req,res)=>{
+  let post = posts.find(element => element.id == req.body.idProduct)
+  console.log(post)
+  post.comentarios.push(req.body.comment)
+  console.log(posts)
+
 }

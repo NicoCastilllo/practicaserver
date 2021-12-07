@@ -1,11 +1,18 @@
 {{> nav}}
 
-{{#each posteos}} 
+{{#each posts}} 
 
     <div class="card mt-3" style="width: 18rem;">
         <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
                 <h2>{{title}}</h2>
                 <p>{{desc}}</p>
+                <form action="/comentario" method="post">
+                    <input class="col-12" style="height: 100px;" placeholder="Tu comentario" name="comment" required>
+                    <input type="hidden" name="idProduct" value="{{id}}">
+                    <button type="submit">Comentar</button>
+                </form>
+                <p>{{comentarios[0]}}</p>
             </div>
+            
 {{/each}}

@@ -2,7 +2,7 @@ import express from 'express'
 import morgan from 'morgan'
 import handlebars  from "express-handlebars"
 import path from 'path'
-import routesUser from './src/routes/routesUser.js'
+import routesPosteos from './src/routes/routesPosteos.js'
 import methodOverride from 'method-override'
 
 const app = express()
@@ -22,7 +22,8 @@ app.engine("hbs", handlebars({
 }));
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'hbs');
-routesUser(app)
+routesPosteos(app)
+
 // servidor
 app.listen(3000, () => {
     console.log(`el servidor esta corriendo en http://localhost:${3000}`)
