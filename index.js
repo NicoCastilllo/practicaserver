@@ -4,6 +4,7 @@ import handlebars  from "express-handlebars"
 import path from 'path'
 import routesPosteos from './src/routes/routesPosteos.js'
 import methodOverride from 'method-override'
+import { conectarDB } from './config/db.js'
 
 const app = express()
 
@@ -22,9 +23,9 @@ app.engine("hbs", handlebars({
 }));
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'hbs');
-routesPosteos(app)
-
+conectarDB()
 // servidor
+routesPosteos(app)
 app.listen(3000, () => {
     console.log(`el servidor esta corriendo en http://localhost:${3000}`)
   })

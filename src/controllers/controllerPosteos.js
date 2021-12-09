@@ -1,3 +1,4 @@
+import Posts from '../models/posts.js'
 let posts = [ ]
 
 export const viewInicio = async (req,res) => {
@@ -10,10 +11,12 @@ export const viewUser= async (req,res)=>{
   }
   
 export const createPost = async (req,res)=>{
-  req.body.id = Math.floor(Math.random()*500000)
-  req.body.comentarios = []
-  posts.push(req.body)
-  console.log(req.body)
+  try {
+    const post= new Post(req.body)
+    await post.save()
+    
+  } 
+  catch (e) { console.log(e) }
   res.status(200).redirect('/usuario')
 }
 
