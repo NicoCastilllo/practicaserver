@@ -13,13 +13,13 @@
     <p>{{desc}}</p>
     <button id="editar">Editar</button>
     <form action="/usuario?_method=DELETE" method="post">
-        <input type="hidden" name="id" value={{id}}>
+        <input type="hidden" name="_id" value={{_id}}>
         <button type="submit">Borrar post</button>
     </form>
   </div>
   <div id="formEditar">
     <form action="/usuario?_method=PUT" method="post">
-        <input type="hidden" name="id" value={{id}}>
+        <input type="hidden" name="_id" value={{_id}}>
         <input name="title" value="{{title}}">
         <input name="desc" value="{{desc}}">
         <button type="submit">Guardar</button>

@@ -9,10 +9,11 @@
                 <p>{{desc}}</p>
                 <form action="/comentario" method="post">
                     <input class="col-12" style="height: 100px;" placeholder="Tu comentario" name="comment" required>
-                    <input type="hidden" name="idProduct" value="{{id}}">
+                    <input type="hidden" name="idProduct" value="{{_id}}">
                     <button type="submit">Comentar</button>
                 </form>
-                <p>{{comentarios[0]}}</p>
+                <p>{{comentarios}}</p>
             </div>
             
+
 {{/each}}
