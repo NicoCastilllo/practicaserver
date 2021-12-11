@@ -63,21 +63,21 @@ export const updatePost = async (req,res) => {
 export const createComentario = async (req,res)=>{
   try {
 
-    const postfound = await Post.find({_id:req.body.idProduct}).lean()
+    const postfound = await Post.find({_id:req.body.idPost}).lean()
         if ((Object.entries(postfound).length === 0)) {
           return res.status(200).render("nofound",{message:"no se encontro el Producto"})
         }  
 
     let modificacion = {}
-    modificacion.comentario = postfound[0].comentario
-    modificacion.comentario.push(req.body.comment)
+    modificacion.comments = postfound[0].comments
+    modificacion.comments.push(req.body.comment)
 
     await Post.findOneAndUpdate(
-      { _id: req.body.idProduct },
+      { _id: req.body.idPost},
       { $set: modificacion },
       { new: true }
     )  
-    res.status(200).redirect('/usuario')
+    res.status(200).redirect('/inicio')
   } 
   catch (e) { console.log(e) }
 

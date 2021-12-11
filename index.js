@@ -5,6 +5,7 @@ import path from 'path'
 import routesPosteos from './src/routes/routesPosteos.js'
 import methodOverride from 'method-override'
 import { conectarDB } from './config/db.js'
+import routesFavs from './src/routes/routesFavoritos.js'
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.set('view engine', 'hbs');
 conectarDB()
 // servidor
 routesPosteos(app)
+routesFavs(app)
 app.listen(3000, () => {
     console.log(`el servidor esta corriendo en http://localhost:${3000}`)
   })

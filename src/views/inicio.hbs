@@ -7,12 +7,23 @@
             <div class="card-body">
                 <h2>{{title}}</h2>
                 <p>{{desc}}</p>
+                <form action="/favoritos" method="post">
+                    <input type="hidden" name="_id" value={{_id}}>
+                    <input type="hidden" name="title" value="{{title}}">
+                    <input type="hidden" name="desc" value="{{desc}}">
+                    <input type="hidden" name="comment" value="{{comments}}">
+                    <button type="submit">Agregar a favoritos</button>
+                </form>
                 <form action="/comentario" method="post">
                     <input class="col-12" style="height: 100px;" placeholder="Tu comentario" name="comment" required>
-                    <input type="hidden" name="idProduct" value="{{_id}}">
+                    <input type="hidden" name="idPost" value="{{_id}}">
                     <button type="submit">Comentar</button>
                 </form>
-                <p>{{comentarios}}</p>
+                <div class="row">
+                    <div class="col-12">
+                        <p class="comentarioborder">{{comments}}</p>
+                    </div>
+                </div>
             </div>
             
 
