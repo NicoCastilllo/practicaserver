@@ -26,6 +26,7 @@ export const viewFavs = async (req,res) => {
            return res.status(200).render("nofound",{message:"no se encontro el Producto"})
          }
          await Fav.deleteOne({ _id: req.body._id }) 
+         
          res.status(200).redirect('/favoritos')
   } 
    catch (e) { console.log(e) }

@@ -6,6 +6,7 @@ import routesPosteos from './src/routes/routesPosteos.js'
 import methodOverride from 'method-override'
 import { conectarDB } from './config/db.js'
 import routesFavs from './src/routes/routesFavoritos.js'
+import fileUpload from 'express-fileupload'
 
 const app = express()
 
@@ -24,6 +25,14 @@ app.engine("hbs", handlebars({
 }));
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'hbs');
+app.use(
+  fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+    useTempFiles: true,
+   // dir for windows PC
+    tempFileDir: path.join(__dirname, './tmp'),
+  }),
+);
 conectarDB()
 // servidor
 routesPosteos(app)

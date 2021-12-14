@@ -1,13 +1,14 @@
 {{> nav}}
-<form action="/usuario" method="post">
+<form action="/usuario" method="post" enctype="multipart/form-data">
     <input placeholder="Titulo de tu post" name="title" required>
     <input placeholder="Descripcion del post" name="desc" required>
+    <input type="file" name="img" accept="image/x-png,image/gif,image/jpeg" required>
     <button type="submit">Postear</button>
 </form>
 
 {{#each posteos}}
 <div class="card mt-3" style="width: 18rem;">
-  <img src="..." class="card-img-top imagen" alt="...">
+  <img src="./img/{{img}}" class="card-img-top imagen" alt="...">
   <div class="card-body carta">
     <h2>{{title}}</h2>
     <p>{{desc}}</p>

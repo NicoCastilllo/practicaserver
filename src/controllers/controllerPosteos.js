@@ -19,8 +19,16 @@ export const viewUser= async (req,res)=>{
   
 export const createPost = async (req,res)=>{
   try {
+    req.body.img = Math.floor(Math.random()*10000000) + ".jpg"
     const post= new Post(req.body)
     await post.save()
+    
+    const EDFile = req.files.img
+
+    EDFile.mv(`./public/img/${post.url}`,err => {
+      if(err) return res.status(500).send({ message : err })
+      return res.status(200).render("nofound",{message:"no se encontro el Producto"})
+      })
     res.status(200).redirect('/usuario')
     
   } 
