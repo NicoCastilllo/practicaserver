@@ -12,7 +12,7 @@
   <div class="card-body carta">
     <h2>{{title}}</h2>
     <p>{{desc}}</p>
-    <button id="editar">Editar</button>
+    <button id="editar{{_id}}" >Editar</button>
     <form action="/usuario?_method=DELETE" method="post">
         <input type="hidden" name="_id" value={{_id}}>
         <button type="submit">Borrar post</button>

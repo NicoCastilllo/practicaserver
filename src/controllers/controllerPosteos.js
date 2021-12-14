@@ -51,6 +51,7 @@ export const delPost = async (req,res) =>{
 }
 
 export const updatePost = async (req,res) => {
+ 
   try {
     const postfound = await Post.find({_id:req.body._id}).lean()
         if ((Object.entries(postfound).length === 0)) {
