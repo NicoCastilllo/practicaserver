@@ -25,7 +25,7 @@ export const createPost = async (req,res)=>{
     
     const EDFile = req.files.img
 
-    EDFile.mv(`./public/img/${post.url}`,err => {
+    EDFile.mv(`./public/img/${post.img}`,err => {
       if(err) return res.status(500).send({ message : err })
       return res.status(200).render("nofound",{message:"no se encontro el Producto"})
       })
@@ -51,7 +51,6 @@ export const delPost = async (req,res) =>{
 }
 
 export const updatePost = async (req,res) => {
-
   try {
     const postfound = await Post.find({_id:req.body._id}).lean()
         if ((Object.entries(postfound).length === 0)) {
@@ -62,6 +61,14 @@ export const updatePost = async (req,res) => {
       { $set: req.body },
       { new: true }
     )  
+    if(req.files){
+      const EDFile = req.files.img
+
+    EDFile.mv(`./public/img/${req.body.img}`,err => {
+      if(err) return res.status(500).send({ message : err })
+      return res.status(200).render("nofound",{message:"no se encontro el Producto"})
+      })
+    }
     res.status(200).redirect('/usuario')
   } 
   catch (e) { console.log(e) }

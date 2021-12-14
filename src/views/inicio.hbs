@@ -3,15 +3,16 @@
 {{#each posts}} 
 
     <div class="card mt-3" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        <img src="./img/{{img}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h2>{{title}}</h2>
                 <p>{{desc}}</p>
-                <form action="/favoritos" method="post">
+                <form action="/favoritos" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_id" value={{_id}}>
                     <input type="hidden" name="title" value="{{title}}">
                     <input type="hidden" name="desc" value="{{desc}}">
                     <input type="hidden" name="comment" value="{{comments}}">
+                    <input type="hidden" name="img" value="{{img}}">
                     <button type="submit">Agregar a favoritos</button>
                 </form>
                 <form action="/comentario" method="post">

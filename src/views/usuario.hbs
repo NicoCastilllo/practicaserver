@@ -19,10 +19,12 @@
     </form>
   </div>
   <div id="formEditar">
-    <form action="/usuario?_method=PUT" method="post">
+    <form action="/usuario?_method=PUT" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_id" value={{_id}}>
         <input name="title" value="{{title}}">
         <input name="desc" value="{{desc}}">
+        <input name="img" type="hidden" value="{{img}}">
+        <input type="file" name="img" accept="image/x-png,image/gif,image/jpeg">
         <button type="submit">Guardar</button>
     </form>
   </div>
