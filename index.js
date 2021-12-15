@@ -7,6 +7,7 @@ import methodOverride from 'method-override'
 import { conectarDB } from './config/db.js'
 import routesFavs from './src/routes/routesFavoritos.js'
 import fileUpload from 'express-fileupload'
+import routesUsers from './src/routes/routesUsers.js'
 
 const app = express()
 
@@ -37,6 +38,7 @@ conectarDB()
 // servidor
 routesPosteos(app)
 routesFavs(app)
+routesUsers(app)
 app.listen(3000, () => {
     console.log(`el servidor esta corriendo en http://localhost:${3000}`)
   })

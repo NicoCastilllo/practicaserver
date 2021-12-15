@@ -8,10 +8,10 @@ export const viewInicio = async (req,res) => {
     catch (e) { console.log(e) }
 }
 
-export const viewUser= async (req,res)=>{
+export const viewPosts= async (req,res)=>{
   try {
   let post =  await Post.find({}).lean()
-    res.status(200).render('usuario',{posteos:post})
+    res.status(200).render('posts',{posteos:post})
   } 
   catch (e) { console.log(e) }
    
@@ -19,8 +19,9 @@ export const viewUser= async (req,res)=>{
   
 export const createPost = async (req,res)=>{
   try {
-    req.body.img = Math.floor(Math.random()*10000000) + ".jpg"
+    
     const post= new Post(req.body)
+    post.img = Math.floor(Math.random()*10000000) + ".jpg"
     await post.save()
     
     const EDFile = req.files.img
@@ -29,7 +30,7 @@ export const createPost = async (req,res)=>{
       if(err) return res.status(500).send({ message : err })
       return res.status(200).render("nofound",{message:"no se encontro el Producto"})
       })
-    res.status(200).redirect('/usuario')
+    res.status(200).redirect('/posts')
     
   } 
   catch (e) { console.log(e) }
@@ -43,7 +44,7 @@ export const delPost = async (req,res) =>{
          return res.status(200).render("nofound",{message:"no se encontro el Producto"})
        }
        await Post.deleteOne({ _id: req.body._id }) 
-       res.status(200).redirect('/usuario')
+       res.status(200).redirect('/posts')
 } 
  catch (e) { console.log(e) }
  
@@ -70,7 +71,7 @@ export const updatePost = async (req,res) => {
       return res.status(200).render("nofound",{message:"no se encontro el Producto"})
       })
     }
-    res.status(200).redirect('/usuario')
+    res.status(200).redirect('/posts')
   } 
   catch (e) { console.log(e) }
  

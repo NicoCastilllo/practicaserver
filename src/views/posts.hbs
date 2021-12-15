@@ -1,5 +1,5 @@
 {{> nav}}
-<form action="/usuario" method="post" enctype="multipart/form-data">
+<form action="/posts" method="post" enctype="multipart/form-data">
     <input placeholder="Titulo de tu post" name="title" required>
     <input placeholder="Descripcion del post" name="desc" required>
     <input type="file" name="img" accept="image/x-png,image/gif,image/jpeg" required>
@@ -13,13 +13,13 @@
     <h2>{{title}}</h2>
     <p>{{desc}}</p>
     <button id="editar{{_id}}" >Editar</button>
-    <form action="/usuario?_method=DELETE" method="post">
+    <form action="/posts?_method=DELETE" method="post">
         <input type="hidden" name="_id" value={{_id}}>
         <button type="submit">Borrar post</button>
     </form>
   </div>
   <div id="formEditar">
-    <form action="/usuario?_method=PUT" method="post" enctype="multipart/form-data">
+    <form action="/posts?_method=PUT" method="post" enctype="multipart/form-data">
         <input type="hidden" name="_id" value={{_id}}>
         <input name="title" value="{{title}}">
         <input name="desc" value="{{desc}}">
